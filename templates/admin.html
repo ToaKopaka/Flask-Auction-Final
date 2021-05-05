@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Admin{% endblock %}
+{% block content %}
+<p>Here are all your special admin controls.</p>
+{% for user in users %}
+<li><a href="{{url_for('user', id=user.id)}}">{{user.username}}</a> is an auctioneer {{user.is_auctioneer}}
+</li><hr>
+{% endfor %}
+
+<hr>
+<p>Create a new user</p>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.username.label }} {{ form.username() }}
+    {{ form.password.label }} {{ form.password() }}
+    {{ form.email.label }} {{ form.email() }}
+    {{ form.is_auctioneer.label }} {{ form.is_auctioneer() }}
+    {{ form.submit() }}
+</form>
+
+
+{% endblock %}

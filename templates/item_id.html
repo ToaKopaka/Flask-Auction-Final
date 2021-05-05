@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Item{% endblock %}
+{% block content %}
+<p>Here are the bids for {{item.item_name}} </p>
+{% if item.is_over == True %}
+The bidding has ended
+{% endif %}
+
+{% for bid in item.bids %}
+<li>{{bid.price}} {{bid.user.username}}
+</li>
+{% endfor %}
+
+
+{% if item.is_over == False %}
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.price.label }} {{ form.price() }}
+        {{ form.submit() }}
+    </form>
+{% endif %}
+
+{% endblock %}

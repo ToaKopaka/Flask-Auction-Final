@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Auctioneer Item{% endblock %}
+{% block content %}
+{{item.item_name}}
+<p>Is the bidding over {{item.is_over}}</p>
+
+
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.submit() }}
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Auctioneer{% endblock %}
+{% block content %}
+<p>Here are the items you have created</p>
+{% for item in user.items %}
+<li><a href="{{url_for('auctioneerItem', id=item.id)}}">{{item.item_name}}</a>
+    {% if item.is_over == True %}
+    The bidding has ended
+    {% endif %}
+    {% if item.is_over == False %}
+    The bidding is still going
+    {% endif %}
+
+    {% for bid in item.bids %}
+        {% if loop.last %} {#Comment I use loop.last so I get the last bid on that specific item#}
+        <p>Winning User</p>
+        {{bid.user.username}} {{bid.user.email}}
+        {% endif %}
+    {% endfor %}
+
+
+</li>
+<br>
+<hr>
+{% endfor %}
+
+
+<p>Make a new item</p>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.item_name.label }} {{ form.item_name() }}
+    {{ form.submit() }}
+</form>
+{% endblock %}

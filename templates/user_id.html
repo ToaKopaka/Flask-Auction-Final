@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}User Settings{% endblock %}
+{% block content %}
+
+<p>make {{user.username}} an auctioneer </p>
+<form method="POST">
+    {{ aForm.hidden_tag() }}
+    {{ aForm.aSubmit() }}
+</form>
+
+<p>make {{user.username}} a user </p>
+<form method="POST">
+    {{ uForm.hidden_tag() }}
+    {{ uForm.uSubmit() }}
+</form>
+
+<p>Change {{user.username}}'s password</p>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.newPassword}}
+    {{ form.pSubmit() }}
+</form>
+
+
+
+{% endblock %}

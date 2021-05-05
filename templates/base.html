@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        <div>
+            {% for message in get_flashed_messages() %}
+                <p>{{message}}</p>
+            {% endfor %}
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Index</a></li>
+                {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                    <li><a href="{{ url_for('admin') }}">Admin</a></li>
+                    <li><a href="{{ url_for('items') }}">Items</a></li>
+                    <li><a href="{{ url_for('bidder') }}">Bidder</a></li>
+                    <li><a href="{{ url_for('auctioneer') }}">Auctioneer</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
+                    
+                {% endif %}
+                
+            </ul>
+        </nav>
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>
